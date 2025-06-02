@@ -1,48 +1,48 @@
 'use strict';
 
-// const btn = document.querySelector('.btn-country');
-// const countriesContainer = document.querySelector('.countries');
+const btn = document.querySelector('.btn-country');
+const countriesContainer = document.querySelector('.countries');
 
-// // // NEW COUNTRIES API URL (use instead of the URL shown in videos):
-// // // https://restcountries.com/v2/name/portugal
+// NEW COUNTRIES API URL (use instead of the URL shown in videos):
+// https://restcountries.com/v2/name/portugal
 
 // // // NEW REVERSE GEOCODING API URL (use instead of the URL shown in videos):
 // // // https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${lat}&longitude=${lng}
 
 // // ///////////////////////////////////////
 
-// // // const request = fetch('https://countries-api-836d.onrender.com/countries/')
-// // console.log(request)
+const request = fetch('https://countries-api-836d.onrender.com/countries/')
+console.log(request)
 
 
-// const renderCountry = function(data) {
-//   const html = `
-//     <article style="border:1px solid #ccc; padding:1rem; margin:1rem; max-width:300px;">
-//       <img src="${data.flags.png}" alt="Flag of ${data.name.common}" style="width:100%;">
-//       <div>
-//         <h3>Name: ${data.name.common}</h3>
-//         <p>Region: ${data.region}</p>
-//         <p>Population: ${data.population.toLocaleString()}</p>
-//       </div>
-//     </article>
-//   `;
+const renderCountry = function(data) {
+  const html = `
+    <article style="border:1px solid #ccc; padding:1rem; margin:1rem; max-width:300px;">
+      <img src="${data.flags.png}" alt="Flag of ${data.name.common}" style="width:100%;">
+      <div>
+        <h3>Name: ${data.name.common}</h3>
+        <p>Region: ${data.region}</p>
+        <p>Population: ${data.population.toLocaleString()}</p>
+      </div>
+    </article>
+  `;
 
-//   // Insert into the document
-//   countriesContainer.insertAdjacentHTML('beforeend', html);
-//   countriesContainer.style.opacity=1;
-// };
-// const renderError=function(msg){
-//     countriesContainer.insertAdjacentText('beforeend',msg);
-//       countriesContainer.style.opacity=1;
-// }
-// const getJSON=function(url,erroeMsg='Something went wrong'){
-//     return fetch(url).then(response=>{
-//         if(!response.ok){
-//             throw new Error(`${erroeMsg} ${response.status}`);
-//         }
-//         return response.json();
-//     });
-// }
+  // Insert into the document
+  countriesContainer.insertAdjacentHTML('beforeend', html);
+  countriesContainer.style.opacity=1;
+};
+const renderError=function(msg){
+    countriesContainer.insertAdjacentText('beforeend',msg);
+      countriesContainer.style.opacity=1;
+}
+const getJSON=function(url,erroeMsg='Something went wrong'){
+    return fetch(url).then(response=>{
+        if(!response.ok){
+            throw new Error(`${erroeMsg} ${response.status}`);
+        }
+        return response.json();
+    });
+}
 
 
 // // /// below code is using promises ans conuming and chaining promises
@@ -129,179 +129,179 @@
  
 // //creating our  own promises
 // //this is how to encapsulate the  any async behaviour  in to promise 
-// const lotteryPromise=new Promise(function(resolve,reject){
-//     console.log('lottery draw is happening')
-//     setTimeout(function(){
-//         if (Math.random() >= 0.5) {
-//             resolve("YOU WIN")
-//         }
-//         reject(new Error ('YOU LOST'))
-//     },2000)
-// })
-// //below is consuming promise
-// lotteryPromise.then(res=>console.log(res)).catch(err=>console.log(err))
+const lotteryPromise=new Promise(function(resolve,reject){
+    console.log('lottery draw is happening')
+    setTimeout(function(){
+        if (Math.random() >= 0.5) {
+            resolve("YOU WIN")
+        }
+        reject(new Error ('YOU LOST'))
+    },2000)
+})
+//below is consuming promise
+lotteryPromise.then(res=>console.log(res)).catch(err=>console.log(err))
 
 
-// //promisifying ----means basically converting callback based async behaviour into promise based
+//promisifying ----means basically converting callback based async behaviour into promise based
 
-// //promisifying settimeout
+//promisifying settimeout
 
-// // const wait =function(seconds){
-// //     return new Promise(function(resolve){
-// //         setTimeout(resolve,seconds*1000)
-// //     })
+const wait =function(seconds){
+    return new Promise(function(resolve){
+        setTimeout(resolve,seconds*1000)
+    })
 
-// // }
+}
 
-// // wait(2).then(()=>{
-// //     console.log('i waited for 2 sec')
-// //     return(wait(1))
-// // }).then(()=>{console.log('i waited for 1 sec')
-// //     return (wait(0))
+wait(2).then(()=>{
+    console.log('i waited for 2 sec')
+    return(wait(1))
+}).then(()=>{console.log('i waited for 1 sec')
+    return (wait(0))
     
-// // }).then(()=>{
-// //     console.log('i waited for 0 sc')
-// // })
+}).then(()=>{
+    console.log('i waited for 0 sc')
+})
 
-// // this below is example of callbackhell. to avoid this same code is written above to avoid callbackhell
+// this below is example of callbackhell. to avoid this same code is written above to avoid callbackhell
 
-// // setTimeout(()=>{
-// //     console.log('1 sec waited');
-// //     setTimeout(()=>{
-// //         console.log('2 sec waited');
-// //         setTimeout(()=>{
-// //             console.log('1 sec waited');
-// //         },1000)
-// //     },1000)
-// // },1000)
+setTimeout(()=>{
+    console.log('1 sec waited');
+    setTimeout(()=>{
+        console.log('2 sec waited');
+        setTimeout(()=>{
+            console.log('1 sec waited');
+        },1000)
+    },1000)
+},1000)
 
-// // Promise.resolve('ABC').then(res=>console.log(res))
-// // Promise.reject(new Error('problem!')).catch(err=>console.error(err))
+Promise.resolve('ABC').then(res=>console.log(res))
+Promise.reject(new Error('problem!')).catch(err=>console.error(err))
 
-// //promisfing thr geoloactionAPI
+promisfing thr geoloactionAPI
 
-// // navigator.geolocation.getCurrentPosition(
-// //     position=>console.log(position),
-// //     err=>console.error(err))
+navigator.geolocation.getCurrentPosition(
+    position=>console.log(position),
+    err=>console.error(err))
 
-// // the above code is written as below using promises
+// the above code is written as below using promises
 
-// const getPosition=function(){
-//     return new Promise(function(resolve,reject){
-//         navigator.geolocation.getCurrentPosition(resolve,
-//     reject)
+const getPosition=function(){
+    return new Promise(function(resolve,reject){
+        navigator.geolocation.getCurrentPosition(resolve,
+    reject)
 
-//     })
-// }
+    })
+}
 
-// getPosition().then(pos=>console.log(pos))
+getPosition().then(pos=>console.log(pos))
 
-// // getting posing using Navigation and geolocation in the ui
-// const whereAmI=function(){
-//     getPosition()
-//     .then(pos=>{
-//         const {latitude:lat , longitude:long}=pos.coords;
-//         return fetch(`https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${lat}&longitude=${long}`)
-//     })
-//     .then(res=>{
-//         if(!res.ok) throw new Error(`problem with geocoding ${res.status}`);
-//         return res.json();
-//     })
-//     .then(data=>{
-//         console.log(data)
-//         console.log(`you are in ${data.city},${data.countryName}`)
-//         return fetch(`https://restcountries.com/v3.1/name/${data.countryName}
-// `)
-//     })
-//     .then(res=>{
-//         if(!res.ok)throw new Error (`country not found ${res.status}`)
-//         return res.json()
-//     })
-//     .then(data=>renderCountry(data[0]))
-//     .catch(err=>console.error(`${err.message}`))
+// getting posing using Navigation and geolocation in the ui
+const whereAmI=function(){
+    getPosition()
+    .then(pos=>{
+        const {latitude:lat , longitude:long}=pos.coords;
+        return fetch(`https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${lat}&longitude=${long}`)
+    })
+    .then(res=>{
+        if(!res.ok) throw new Error(`problem with geocoding ${res.status}`);
+        return res.json();
+    })
+    .then(data=>{
+        console.log(data)
+        console.log(`you are in ${data.city},${data.countryName}`)
+        return fetch(`https://restcountries.com/v3.1/name/${data.countryName}
+`)
+    })
+    .then(res=>{
+        if(!res.ok)throw new Error (`country not found ${res.status}`)
+        return res.json()
+    })
+    .then(data=>renderCountry(data[0]))
+    .catch(err=>console.error(`${err.message}`))
     
-// }
+}
 
-// btn.addEventListener('click',whereAmI)
+btn.addEventListener('click',whereAmI)
 
-//challenge--2
+challenge--2
 
-// using of async /await
+using of async /await
 
-// async means that keeps running in the background
+async means that keeps running in the background
 
-// const getPosition=function(){
-//     return new Promise(function(resolve,reject){
-//         navigator.geolocation.getCurrentPosition(resolve,
-//     reject)
+const getPosition=function(){
+    return new Promise(function(resolve,reject){
+        navigator.geolocation.getCurrentPosition(resolve,
+    reject)
 
-//     })
-// }
+    })
+}
 
-// const whereAmI=async function(country){
-//     try{
-//     //geolocation
-//     const pos=await getPosition()
-//     const {latitude:lat , longitude:long}=pos;
-//     //reverse geocoding
-//     const resGeo=fetch(`https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${lat}&longitude=${long}`)
-//     if(!resGeo.ok) throw new Error(`problem getting at location data`)
-//     const dataGeo=(await resGeo).json();
-//     console.log(dataGeo)
+const whereAmI=async function(country){
+    try{
+    //geolocation
+    const pos=await getPosition()
+    const {latitude:lat , longitude:long}=pos;
+    //reverse geocoding
+    const resGeo=fetch(`https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${lat}&longitude=${long}`)
+    if(!resGeo.ok) throw new Error(`problem getting at location data`)
+    const dataGeo=(await resGeo).json();
+    console.log(dataGeo)
 
-//     //countrydata
-//     const res=await(fetch(`https://restcountries.com/v3.1/name/${country}`))
-//     const data = await res.json()
-//     renderCountry(data[0])
-//     console.log(data)
-//     }
-//     catch(err){
-//         console.error(`${err}🔥`)
-//         renderError(`🔥${err.message}`)
-//     }
-// }
-
-
-// whereAmI()
-// whereAmI()
-// console.log('first')
-
-// try{
-// let y=1;
-// const x=2;
-// y=3
-// }
-// catch(err){
-//     alert(err.message)
-// }
-
-//running async functions parellelly
+    //countrydata
+    const res=await(fetch(`https://restcountries.com/v3.1/name/${country}`))
+    const data = await res.json()
+    renderCountry(data[0])
+    console.log(data)
+    }
+    catch(err){
+        console.error(`${err}🔥`)
+        renderError(`🔥${err.message}`)
+    }
+}
 
 
-// const get3countries=async function(c1,c2,c3){
-//     try{
-//         // const [data1]= await getJSON(`https://restcountries.com/v3.1/name/${c1}`)
-//         // const [data2]= await getJSON(`https://restcountries.com/v3.1/name/${c2}`)
-//         //  const [data3]= await getJSON(`https://restcountries.com/v3.1/name/${c3}`)
+whereAmI()
+whereAmI()
+console.log('first')
+
+try{
+let y=1;
+const x=2;
+y=3
+}
+catch(err){
+    alert(err.message)
+}
+
+running async functions parellelly
+
+
+const get3countries=async function(c1,c2,c3){
+    try{
+        // const [data1]= await getJSON(`https://restcountries.com/v3.1/name/${c1}`)
+        // const [data2]= await getJSON(`https://restcountries.com/v3.1/name/${c2}`)
+        //  const [data3]= await getJSON(`https://restcountries.com/v3.1/name/${c3}`)
         
-//         //promises .all is used to make the all promises parelley(at same time)
-//         // if promise is rejected then entire promise will be rejected
+        //promises .all is used to make the all promises parelley(at same time)
+        // if promise is rejected then entire promise will be rejected
 
-//         const data = await Promise.all([
-//             getJSON(`https://restcountries.com/v3.1/name/${c1}`),
-//             getJSON(`https://restcountries.com/v3.1/name/${c2}`),
-//             getJSON(`https://restcountries.com/v3.1/name/${c3}`)
-//         ])
+        const data = await Promise.all([
+            getJSON(`https://restcountries.com/v3.1/name/${c1}`),
+            getJSON(`https://restcountries.com/v3.1/name/${c2}`),
+            getJSON(`https://restcountries.com/v3.1/name/${c3}`)
+        ])
 
-//         console.log(data.map(d=>d[0].capital))
-//     }catch(err){
-//         console.error(`${err}`)
-//     }
+        console.log(data.map(d=>d[0].capital))
+    }catch(err){
+        console.error(`${err}`)
+    }
 
-// }
-// get3countries('india','portugal','canada')
+}
+get3countries('india','portugal','canada')
 
-//promise.race is function that receive an array of promises and receive a promise
+// promise.race is function that receive an array of promises and receive a promise
 // the promise which settle first will win the race(settele means a avalue is avalible)
 
 const getJSON=function(url,erroeMsg='Something went wrong'){

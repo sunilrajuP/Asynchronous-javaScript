@@ -94,7 +94,7 @@ btn.addEventListener('click',function(){
 
 
 
-// getCountriesData('india')
+getCountriesData('india')
 
 //chaining promises are used to get rid of the callbackhell
 //callbackhell is happen when continous calling of async code itself
